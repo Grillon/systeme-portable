@@ -1,0 +1,40 @@
+=pod
+
+=head1 NOM
+
+Système portable
+
+=head1 FONCTION
+
+Chercher et décrire des méthodes permettant de rendre un système portable et/ou reproductible simplement.
+
+=head1 PISTES
+
+=head3 Nix
+
+L<Nix package manager|http://nixos.org/nix/>
+
+=head3 Linuxbrew
+
+L<Linuxbrew, the fork of homebrew|http://linuxbrew.sh/>
+
+=head3 gentoo prefix RAP
+
+L<gentoo prefix avec sa propre libc|https://wiki.gentoo.org/wiki/Prefix/libc#Manual_Installation>
+
+=head2 commentaire
+
+Ce sont les trois pistes raisonnables et prometteuses que j'ai trouvé.
+
+=head1 Avancement
+
+J'ai pu essayer linuxbrew pour reproduire un environnement tmux+neovim+ un set complet de plugins.
+J'ai été obligé d'utiliser la libc du système, cela ne fonctionnait pas avec la libc linuxbrew... Je dois également voir si linuxbrew et perlbrew sont compatibles.
+
+
+J'ai pu essayer egalement Nix. Il ne m'a pas permit de reproduire mon environnement tmux+neovim complet. J'ai rencontré des difficultés avec le gem neovim qui a mis en avant que j'avais des probleme avec le msgpack. Je ne peux rien compiler. J'ai pourtant suivi la procedure du manuel : http://nixos.org/nixpkgs/manual/#sec-language-ruby.
+
+
+Je n'ai pas encore essayé prefix rap mais j'en ai entendu beaucoup de bien. j'espère qu'il me permettra d'utiliser une libc portable. C'est ce qu'il promet.
+
+=cut
