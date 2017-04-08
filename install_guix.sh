@@ -88,13 +88,20 @@ function update {
 }
 function updateBashrc {
 	echo "$FUNCNAME has begun"
-	echo 'export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale' >> ~/.bashrc
-	echo 'export PATH="$HOME/.guix-profile/bin${PATH:+:}$PATH"' >> ~/.bashrc
+echo 'export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale' >> ~/.bashrc
+echo 'export GEM_PATH="$HOME/.gem/ruby/2.3.0"' >> ~/.bashrc
+echo 'export PATH="$HOME/.guix-profile/bin:$HOME/.guix-profile/sbin${PATH:+:}$PATH:$GEM_PATH/bin"' >> ~/.bashrc
+echo 'export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs${SSL_CERT_DIR:+:}$SSL_CERT_DIR"' >> ~/.bashrc
+echo 'export C_INCLUDE_PATH="$HOME/.guix-profile/include${C_INCLUDE_PATH:+:}$C_INCLUDE_PATH"' >> ~/.bashrc
+echo 'export CPLUS_INCLUDE_PATH="$HOME/.guix-profile/include${CPLUS_INCLUDE_PATH:+:}$CPLUS_INCLUDE_PATH"' >> ~/.bashrc
+echo 'export LIBRARY_PATH="$HOME/.guix-profile/lib${LIBRARY_PATH:+:}$LIBRARY_PATH"' >> ~/.bashrc
+echo 'export PYTHONPATH="$HOME/.guix-profile/lib/python3.5/site-packages${PYTHONPATH:+:}$PYTHONPATH"' >> ~/.bashrc
 }
 function aide {
 	echo "usage : "
 	echo "$prog -d to download"
 	echo "$prog -i to install : you must do it as root"
+	echo "$prog -l to add locales "
 	echo "$prog -c to configure user profile"
 	echo "$prog -u to update"
 	echo "$prog -m to install certificate manager"
