@@ -16,6 +16,10 @@ Chercher et décrire des méthodes permettant de rendre un système portable et/
 
 L<Nix package manager|http://nixos.org/nix/>
 
+=head3 Guix
+
+L<Guix package manager|https://www.gnu.org/software/guix/>
+
 =head3 Linuxbrew
 
 L<Linuxbrew, the fork of homebrew|http://linuxbrew.sh/>
