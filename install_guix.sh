@@ -3,22 +3,28 @@
 function download {
 	echo "$0 has begun"
 	cd /tmp
-	wget  https://alpha.gnu.org/gnu/guix/guix-binary-0.12.0.x86_64-linux.tar.xz.sig
-	wget https://alpha.gnu.org/gnu/guix/guix-binary-0.12.0.x86_64-linux.tar.xz
+	if [ ! -e guix-binary-0.12.0.x86_64-linux.tar.xz.sig ];then 
+		wget  https://alpha.gnu.org/gnu/guix/guix-binary-0.12.0.x86_64-linux.tar.xz.sig
+		wget https://alpha.gnu.org/gnu/guix/guix-binary-0.12.0.x86_64-linux.tar.xz
+	fi
 }
 function verify {
 	echo "$0 has begun"
-	gpg --keyserver pgp.mit.edu --recv-keys BCA689B636553801C3C62150197A5888235FACAC
-	gpg --verify guix-binary-0.12.0.system.tar.xz.sig
+	if [ -e guix-binary-0.12.0.x86_64-linux.tar.xz.sig ];then 
+		gpg --keyserver pgp.mit.edu --recv-keys BCA689B636553801C3C62150197A5888235FACAC
+		gpg --verify guix-binary-0.12.0.x86_64-linux.tar.xz.sig 
+	fi
 }
 function install {
 	echo "$0 has begun"
 	echo "you have to do log as root"
 	read a
 	cd /tmp
-	tar --warning=no-timestamp -xf \
-		guix-binary-0.12.0.system.tar.xz
-	mv var/guix /var/ && mv gnu /
+	if [ -e guix-binary-0.12.0.x86_64-linux.tar.xz ];then 
+		tar --warning=no-timestamp -xf \
+		guix-binary-0.12.0.x86_64-linux.tar.xz	
+		mv var/guix /var/ && mv gnu /
+	fi
 }
 function setRootProfile {
 	echo "$0 has begun"
@@ -79,10 +85,18 @@ function certificates {
 function update {
 	echo "Don\'t forget to update with \"guix pull\""
 }
+function aide {
+echo "usage : "
+echo "$prog -d to download"
+echo "$prog -i to install : you must do it as root"
+echo "$prog -u to update"
+echo "$prog -c to install certificate manager"
+}
 while getopts ":dcui" opt; do
 	case $opt in
 		\?)
 			echo "Invalid option: -$OPTARG" >&2
+			aide
 			exit 1
 			;;
 		d)
