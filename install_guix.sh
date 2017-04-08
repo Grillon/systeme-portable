@@ -22,7 +22,7 @@ function install {
 	cd /tmp
 	if [ -e guix-binary-0.12.0.x86_64-linux.tar.xz ];then 
 		tar --warning=no-timestamp -xf \
-		guix-binary-0.12.0.x86_64-linux.tar.xz	
+			guix-binary-0.12.0.x86_64-linux.tar.xz	
 		mv var/guix /var/ && mv gnu /
 	fi
 }
@@ -92,14 +92,14 @@ function updateBashrc {
 	echo 'export PATH="$HOME/.guix-profile/bin${PATH:+:}$PATH"' >> ~/.bashrc
 }
 function aide {
-echo "usage : "
-echo "$prog -d to download"
-echo "$prog -i to install : you must do it as root"
-echo "$prog -c to configure user profile"
-echo "$prog -u to update"
-echo "$prog -m to install certificate manager"
+	echo "usage : "
+	echo "$prog -d to download"
+	echo "$prog -i to install : you must do it as root"
+	echo "$prog -c to configure user profile"
+	echo "$prog -u to update"
+	echo "$prog -m to install certificate manager"
 }
-while getopts ":dcui" opt; do
+while getopts ":dcuiml" opt; do
 	case $opt in
 		\?)
 			echo "Invalid option: -$OPTARG" >&2
@@ -126,9 +126,15 @@ while getopts ":dcui" opt; do
 			install && setRootProfile && setUsersProfile && startGuix && (makeItAvailable;activateHydraSubstitute) && exit 0
 			exit 1
 			;;
+		l)
+			echo "install local"
+			updateBashrc && installLocales && exit 0
+			exit 1
+			;;
+
 		c)
 			echo "configure user environment"
-			updateBashrc && installLocales && whatAboutNscd && asianFonts && exit 0
+			whatAboutNscd && asianFonts && exit 0
 			exit 1
 			;;
 	esac
