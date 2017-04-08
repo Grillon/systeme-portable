@@ -123,7 +123,7 @@ while getopts ":dcui" opt; do
 			;;
 		i) 
 			echo "installation complete"
-			install && setRootProfile && setUsersProfile && startGuix && makeItAvailable && activateHydraSubstitute && exit 0
+			install && setRootProfile && setUsersProfile && startGuix && (makeItAvailable;activateHydraSubstitute) && exit 0
 			exit 1
 			;;
 		c)
