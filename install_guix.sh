@@ -86,12 +86,18 @@ function update {
 	echo "$FUNCNAME has begun"
 	guix pull
 }
+function updateBashrc {
+	echo "$FUNCNAME has begun"
+	echo 'export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale' >> ~/.bashrc
+	echo 'export PATH="/home/user/.guix-profile/bin${PATH:+:}$PATH"' >> ~/.bashrc
+}
 function aide {
 echo "usage : "
 echo "$prog -d to download"
 echo "$prog -i to install : you must do it as root"
+echo "$prog -c to configure user profile"
 echo "$prog -u to update"
-echo "$prog -c to install certificate manager"
+echo "$prog -m to install certificate manager"
 }
 while getopts ":dcui" opt; do
 	case $opt in
@@ -105,7 +111,7 @@ while getopts ":dcui" opt; do
 			download && verify && exit 0
 			exit 1
 			;;
-		c)
+		m)
 			echo "install certificate manager"
 			certificates && exit 0
 			exit 1
@@ -117,8 +123,12 @@ while getopts ":dcui" opt; do
 			;;
 		i) 
 			echo "installation complete"
-			install && setRootProfile && setUsersProfile && startGuix && makeItAvailable \
-				&& activateHydraSubstitute && installLocales && whatAboutNscd && asianFonts && exit 0
+			install && setRootProfile && setUsersProfile && startGuix && exit 0
+			exit 1
+			;;
+		c)
+			echo "configure user environment"
+			updateBashrc && makeItAvailable && activateHydraSubstitute && installLocales && whatAboutNscd && asianFonts && exit 0
 			exit 1
 			;;
 	esac
