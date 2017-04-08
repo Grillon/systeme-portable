@@ -89,7 +89,7 @@ function update {
 function updateBashrc {
 	echo "$FUNCNAME has begun"
 	echo 'export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale' >> ~/.bashrc
-	echo 'export PATH="/home/user/.guix-profile/bin${PATH:+:}$PATH"' >> ~/.bashrc
+	echo 'export PATH="$HOME/.guix-profile/bin${PATH:+:}$PATH"' >> ~/.bashrc
 }
 function aide {
 echo "usage : "
@@ -123,12 +123,12 @@ while getopts ":dcui" opt; do
 			;;
 		i) 
 			echo "installation complete"
-			install && setRootProfile && setUsersProfile && startGuix && makeItAvailable && exit 0
+			install && setRootProfile && setUsersProfile && startGuix && makeItAvailable && activateHydraSubstitute && exit 0
 			exit 1
 			;;
 		c)
 			echo "configure user environment"
-			updateBashrc && activateHydraSubstitute && installLocales && whatAboutNscd && asianFonts && exit 0
+			updateBashrc && installLocales && whatAboutNscd && asianFonts && exit 0
 			exit 1
 			;;
 	esac
