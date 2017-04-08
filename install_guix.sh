@@ -123,12 +123,12 @@ while getopts ":dcui" opt; do
 			;;
 		i) 
 			echo "installation complete"
-			install && setRootProfile && setUsersProfile && startGuix && exit 0
+			install && setRootProfile && setUsersProfile && startGuix && makeItAvailable && exit 0
 			exit 1
 			;;
 		c)
 			echo "configure user environment"
-			updateBashrc && makeItAvailable && activateHydraSubstitute && installLocales && whatAboutNscd && asianFonts && exit 0
+			updateBashrc && activateHydraSubstitute && installLocales && whatAboutNscd && asianFonts && exit 0
 			exit 1
 			;;
 	esac
