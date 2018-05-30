@@ -28,9 +28,25 @@ L<Linuxbrew, the fork of homebrew|http://linuxbrew.sh/>
 
 L<gentoo prefix avec sa propre libc|https://wiki.gentoo.org/wiki/Prefix/libc#Manual_Installation>
 
+=head3 exherbo paludis
+
+https://exherbo.org/
+
+https://paludis.exherbo.org/
+
+https://github.com/rofrol/exherbo/blob/master/install.sh
+
+   Encore du port
+
+=head3 snappy
+
+https://snapcraft.io/
+
+   Installation de package dans des containers disponible pour le reste du systeme contrairement à docker.
+
 =head2 commentaire
 
-Ce sont les trois pistes raisonnables et prometteuses que j'ai trouvé.
+Ce sont les pistes raisonnables et prometteuses que j'ai trouvé.
 
 =head1 Avancement
 
